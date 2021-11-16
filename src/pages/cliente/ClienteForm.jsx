@@ -4,6 +4,7 @@ import Card from '../../components/card'
 import { AiOutlineRollback, AiOutlineSend } from 'react-icons/ai';
 import validador from '../../validadores/validadorCliente';
 import { mask, unMask } from 'remask';
+import clienteServices from '../../services/clienteServices';
 
 
 const ClienteForm = () => {
@@ -12,7 +13,7 @@ const ClienteForm = () => {
 
 
     function enviarDados(dados) {
-        console.log(dados);
+        clienteServices.create(dados);
     }
 
     function mascara(event){ 
@@ -24,7 +25,6 @@ const ClienteForm = () => {
         setValue(name, valor)
     }
 
-   
 
     return (
         <>
