@@ -1,7 +1,7 @@
 class livrosServices{
     getAll(){
         const livros = localStorage.getItem('livros')
-        return livros
+        return livros ? JSON.parse(livros) : []
     }
 
     get(id){

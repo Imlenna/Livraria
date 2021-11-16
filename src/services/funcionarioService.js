@@ -1,7 +1,7 @@
 class funcionarioServices{
     getAll(){
-        const funcionario = localStorage.getItem('funcionario')
-        return funcionario
+        const funcionarios = localStorage.getItem('funcionarios')
+        return funcionarios ? JSON.parse(funcionarios) : []
     }
 
     get(id){

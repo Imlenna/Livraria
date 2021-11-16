@@ -1,7 +1,7 @@
 class autorServices{
     getAll(){
-        const autor = localStorage.getItem('autor')
-        return autor
+        const autores = localStorage.getItem('autores')
+        return autores ? JSON.parse(autores) : []
     }
 
     get(id){

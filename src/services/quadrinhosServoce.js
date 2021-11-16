@@ -1,7 +1,7 @@
 class quadrinhoServices{
     getAll(){
-        const quadrinho = localStorage.getItem('quadrinho')
-        return quadrinho
+        const quadrinhos = localStorage.getItem('quadrinhos')
+        return quadrinhos ? JSON.parse(quadrinhos) : []
     }
 
     get(id){

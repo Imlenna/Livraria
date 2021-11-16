@@ -1,7 +1,7 @@
 class clienteServices{
     getAll(){
-        const cliente = localStorage.getItem('cliente')
-        return cliente
+        const clientes = localStorage.getItem('cliente')
+        return clientes ? JSON.parse(clientes) : []
     }
 
     get(id){
