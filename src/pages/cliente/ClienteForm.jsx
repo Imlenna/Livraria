@@ -3,16 +3,28 @@ import { Button, Form, Row } from 'react-bootstrap'
 import Card from '../../components/card'
 import { AiOutlineRollback, AiOutlineSend } from 'react-icons/ai';
 import validador from '../../validadores/validadorCliente';
+import { mask, unMask } from 'remask';
 
 
 const ClienteForm = () => {
 
-    const { register, handleSubmit, formState: { errors } } = useForm()
+    const { register, handleSubmit, setValue, formState: { errors } } = useForm()
 
 
     function enviarDados(dados) {
         console.log(dados);
     }
+
+    function mascara(event){ 
+        const masc = event.target.getAttribute('mask')
+        const name = event.target.name
+        let valor = unMask(event.target.value) 
+        valor = mask(valor,masc)
+        
+        setValue(name, valor)
+    }
+
+   
 
     return (
         <>
@@ -36,17 +48,17 @@ const ClienteForm = () => {
                         </Form.Group>
                         <Form.Group as={Row} controlId="cpf">
                             <Form.Label>CPF:</Form.Label>
-                            <Form.Control type="number" {...register("cpf",validador.cpf)} />
+                            <Form.Control type="text" {...register("cpf",validador.cpf)} mask ="999.999.999-99" onChange={mascara}/>
                             {errors.cpf && <span className="text-danger">{errors.cpf.message}</span>}
                         </Form.Group>
                         <Form.Group as={Row} controlId="email">
                             <Form.Label>Email:</Form.Label>
-                            <Form.Control type="email" {...register("email",validador.email)} />
+                            <Form.Control type="email" {...register("email",validador.email)}/>
                             {errors.email && <span className="text-danger">{errors.email.message}</span>}
                         </Form.Group>
                         <Form.Group as={Row} controlId="telefone">
                             <Form.Label>Telefone</Form.Label>
-                            <Form.Control type="text" {...register("telefone", validador.telefone)} />
+                            <Form.Control type="text" {...register("telefone", validador.telefone)}  mask="(99)99999-9999" onChange={mascara}/>
                         </Form.Group>
                     </Row>
                     <div className="text-center">
