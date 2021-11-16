@@ -9,8 +9,10 @@ class funcionarioServices{
     }
 
     create(dados){
-        console.log(dados)
-        localStorage.setItem('funcionario', JSON.stringify(dados))
+        const funcionarios = this.getAll()
+
+        funcionarios.push(dados)
+        localStorage.setItem('funcionarios', JSON.stringify(funcionarios))
     }
 
     update(dados){

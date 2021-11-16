@@ -9,8 +9,10 @@ class clienteServices{
     }
 
     create(dados){
-        console.log(dados)
-        localStorage.setItem('cliente', JSON.stringify(dados))
+        const clientes = this.getAll()
+
+        clientes.push(dados)
+        localStorage.setItem('clientes', JSON.stringify(clientes))
     }
 
     update(dados){

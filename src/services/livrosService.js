@@ -9,8 +9,10 @@ class livrosServices{
     }
 
     create(dados){
-        console.log(dados)
-        localStorage.setItem('livros', JSON.stringify(dados))
+        const livros = this.getAll()
+
+        livros.push(dados)
+        localStorage.setItem('livros', JSON.stringify(livros))
     }
 
     update(dados){

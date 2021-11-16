@@ -9,8 +9,11 @@ class quadrinhoServices{
     }
 
     create(dados){
-        console.log(dados)
-        localStorage.setItem('quadrinho', JSON.stringify(dados))
+        const quadrinhos = this.getAll()
+
+        quadrinhos.push(dados)
+
+        localStorage.setItem('quadrinhos', JSON.stringify(quadrinhos))
     }
 
     update(dados){

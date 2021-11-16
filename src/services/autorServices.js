@@ -9,8 +9,10 @@ class autorServices{
     }
 
     create(dados){
-        console.log(dados)
-        localStorage.setItem('autor', JSON.stringify(dados))
+        const autores = this.getAll()
+
+        autores.push(dados)
+        localStorage.setItem('autores', JSON.stringify(autores))
     }
 
     update(dados){
