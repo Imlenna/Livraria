@@ -14,8 +14,6 @@ const QuadrinhoForm = () => {
         console.log(dados);
     }
 
-  
-
     return (
         <>
             <Card title="Quadrinho">
@@ -50,7 +48,7 @@ const QuadrinhoForm = () => {
                             {errors.genero && <span className="text-danger">{errors.genero.message}</span>}
                         </Form.Group>
                         <Form.Group as={Row} controlId="pais">
-                            <Form.Label>País:</Form.Label>
+                            <Form.Label>País de publicação:</Form.Label>
                             <Form.Control type="text" {...register("pais",validador.pais)} />
                         </Form.Group>
                     </Row>
