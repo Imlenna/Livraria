@@ -1,9 +1,11 @@
 import React from 'react'
 import { Table } from 'react-bootstrap'
+import Card from './card'
 
 const listagem = () => {
     return (
         <>
+            <Card>
             <Table size="sm" striped variant="light">
                 <thead>
                     <tr>
@@ -22,6 +24,7 @@ const listagem = () => {
                     </tr>
                 </tbody>
             </Table>
+            </Card>
         </>
     )
 }
