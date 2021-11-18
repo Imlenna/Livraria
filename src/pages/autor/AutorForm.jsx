@@ -4,13 +4,17 @@ import Card from '../../components/card'
 import {  AiOutlineRollback, AiOutlineSend } from 'react-icons/ai';
 import validador from '../../validadores/validadorAutor';
 import { Link } from 'react-router-dom/cjs/react-router-dom.min';
+import AutorServices from '../../services/autorServices'
 
 
 
-const AutorForm = () => {
+const AutorForm = (props) => {
 
     const { register, handleSubmit, formState: { errors } } = useForm()
+    
     function enviarDados(dados) {
+        AutorServices.create(dados)
+        props.history.push('/autores')
         console.log(dados);
     }
 

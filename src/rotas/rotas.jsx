@@ -1,5 +1,4 @@
 import React from 'react'
-import { Container } from 'react-bootstrap'
 import { Switch, Route } from 'react-router-dom'
 import AutorForm from '../pages/autor/AutorForm'
 import Autor from '../pages/autor/autor'
@@ -17,7 +16,6 @@ const rotas = () => {
     return (
         <>
             <Switch>
-                <Container className="mt-3">
                     <Route exact path="/" component={Inicio}/>
                     <Route path="/CadastroAutor" component={AutorForm} />
                     <Route path="/CadastroFuncionario" component={FuncionarioForm} />
@@ -29,7 +27,6 @@ const rotas = () => {
                     <Route path="/Clientes" component={Cliente} />
                     <Route path="/Livros" component={Livros} />
                     <Route path="/Quadrinhos" component={Quadrinhos} />
-                </Container>
             </Switch>
         </>
     )

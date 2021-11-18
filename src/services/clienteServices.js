@@ -1,6 +1,6 @@
 class clienteServices{
     getAll(){
-        const clientes = localStorage.getItem('cliente')
+        const clientes = localStorage.getItem('clientes')
         return clientes ? JSON.parse(clientes) : []
     }
 
@@ -9,6 +9,7 @@ class clienteServices{
     }
 
     create(dados){
+
         const clientes = this.getAll()
 
         clientes.push(dados)

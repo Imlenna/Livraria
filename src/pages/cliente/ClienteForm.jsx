@@ -4,17 +4,19 @@ import Card from '../../components/card'
 import { AiOutlineRollback, AiOutlineSend } from 'react-icons/ai';
 import validador from '../../validadores/validadorCliente';
 import { mask, unMask } from 'remask';
-import clienteServices from '../../services/clienteServices';
+import ClienteServices from '../../services/clienteServices';
 import { Link } from 'react-router-dom/cjs/react-router-dom.min';
 
 
-const ClienteForm = () => {
+const ClienteForm = (props) => {
 
     const { register, handleSubmit, setValue, formState: { errors } } = useForm()
 
 
     function enviarDados(dados) {
-        clienteServices.create(dados);
+        ClienteServices.create(dados)
+        props.history.push('/clientes')
+        console.log(dados);
     }
 
     function mascara(event){ 
