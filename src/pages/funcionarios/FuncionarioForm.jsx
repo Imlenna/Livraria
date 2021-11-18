@@ -3,6 +3,7 @@ import { Button, Col, Form, Row } from 'react-bootstrap'
 import Card from '../../components/card'
 import { AiOutlineRollback, AiOutlineSend } from 'react-icons/ai';
 import validador from '../../validadores/validadorFuncionario';
+import { Link } from 'react-router-dom';
 
 
 const FuncionarioForm = () => {
@@ -55,7 +56,7 @@ const FuncionarioForm = () => {
                     </Row>
                     <div className="text-center">
                         <Button variant="success" onClick={handleSubmit(enviarDados)}><AiOutlineSend /> Salvar</Button>
-                        <Button variant="danger"><AiOutlineRollback />Voltar</Button>
+                        <Link to="/" className="btn btn-danger"><AiOutlineRollback/>Voltar</Link>
                     </div>
                 </Form>
             </Card>

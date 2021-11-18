@@ -5,6 +5,7 @@ import { AiOutlineRollback, AiOutlineSend } from 'react-icons/ai';
 import validador from '../../validadores/validadorCliente';
 import { mask, unMask } from 'remask';
 import clienteServices from '../../services/clienteServices';
+import { Link } from 'react-router-dom/cjs/react-router-dom.min';
 
 
 const ClienteForm = () => {
@@ -63,8 +64,7 @@ const ClienteForm = () => {
                     </Row>
                     <div className="text-center">
                         <Button variant="success" onClick={handleSubmit(enviarDados)}><AiOutlineSend /> Salvar</Button>
-                       
-                        <Button variant="danger"><AiOutlineRollback />Voltar</Button>
+                        <Link to="/" className="btn btn-danger"><AiOutlineRollback/>Voltar</Link>
                     </div>
                 </Form>
             </Card>

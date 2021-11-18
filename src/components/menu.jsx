@@ -7,7 +7,7 @@ const menu = () => {
         <>
         <Navbar bg="primary" variant="dark">
           <Container>
-            <Navbar.Brand href="#">Livraria</Navbar.Brand>
+            <Navbar.Brand href="/">Livraria</Navbar.Brand>
             <Nav className="me-auto">
               <NavDropdown title="Cadastro" id="navbarScrollingDropdown">
                 <Link to="/CadastroFuncionario" className="dropdown-item">Funcionario</Link>

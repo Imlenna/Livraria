@@ -11,12 +11,14 @@ import LivroFrom from '../pages/livros/LivrosForm'
 import Livros from '../pages/livros/livro'
 import QuadrinhoForm from '../pages/quadrinhos/QuadrinhoForm'
 import Quadrinhos from '../pages/quadrinhos/quadrinho'
+import Inicio from '../pages/Inicio'
 
 const rotas = () => {
     return (
         <>
             <Switch>
                 <Container className="mt-3">
+                    <Route exact path="/" component={Inicio}/>
                     <Route path="/CadastroAutor" component={AutorForm} />
                     <Route path="/CadastroFuncionario" component={FuncionarioForm} />
                     <Route path="/CadastroCliente" component={ClienteForm} />
