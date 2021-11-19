@@ -6,7 +6,7 @@ const validadorFuncionario = {
         minLength: { value: 3, message: Mensagem.min + ' ' + 3 },
         maxLength: { value: 60, message: Mensagem.max + ' ' + 60 },
     },
-    função: { required: Mensagem.funcao },
+    funcao: { required: Mensagem.funcao },
     cpf: { required: Mensagem.cpf },
     matricula:
     {

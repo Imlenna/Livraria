@@ -4,15 +4,28 @@ import Card from '../../components/card'
 import { AiOutlineRollback, AiOutlineSend } from 'react-icons/ai';
 import validador from '../../validadores/validadorLivro';
 import { Link } from 'react-router-dom/cjs/react-router-dom.min';
+import { mask, unMask } from 'remask';
+import LivrosServices from '../../services/livrosServices'
 
 
-const LivrosForm = () => {
+const LivrosForm = (props) => {
 
-    const { register, handleSubmit, formState: { errors } } = useForm()
+    const { register, handleSubmit, setValue, formState: { errors } } = useForm()
 
 
     function enviarDados(dados) {
+        LivrosServices.create(dados)
+        props.history.push('/Livros')
         console.log(dados);
+    }
+
+    function mascara(event){ 
+        const masc = event.target.getAttribute('mask')
+        const name = event.target.name
+        let valor = unMask(event.target.value) 
+        valor = mask(valor,masc)
+
+        setValue(name, valor)
     }
 
     return (
@@ -37,7 +50,7 @@ const LivrosForm = () => {
                         </Form.Group>
                         <Form.Group as={Row} controlId="publicacao">
                             <Form.Label>Data de publicação</Form.Label>
-                            <Form.Control type="date" {...register("publicacao",validador.publicacao)} />
+                            <Form.Control type="tex" {...register("publicacao",validador.publicacao)} mask="99/99/9999" onChange={mascara} />
                         </Form.Group>
                         <Form.Group as={Col} controlId="versão">
                             <Form.Label>Versão</Form.Label>
@@ -45,7 +58,7 @@ const LivrosForm = () => {
                         </Form.Group>
                         <Form.Group as={Col} controlId="exemplares">
                             <Form.Label>Número de exemplares</Form.Label>
-                            <Form.Control type="number" {...register("exemplares",validador.exemplares)} />
+                            <Form.Control type="text" {...register("exemplares",validador.exemplares)} />
                         </Form.Group>
                         <Form.Group as={Row} controlId="genero">
                             <Form.Label>Genêro Literario</Form.Label>

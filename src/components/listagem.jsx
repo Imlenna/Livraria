@@ -2,7 +2,8 @@ import React from 'react'
 import { Table } from 'react-bootstrap'
 import Card from './card'
 
-const listagem = () => {
+const listagem = (props) => {
+    
     return (
         <>
             <Card>

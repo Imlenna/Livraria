@@ -4,15 +4,28 @@ import Card from '../../components/card'
 import { AiOutlineRollback, AiOutlineSend } from 'react-icons/ai';
 import validador from '../../validadores/validadorQuadrinho';
 import { Link } from 'react-router-dom/cjs/react-router-dom.min';
+import { mask, unMask } from 'remask';
+import QuadrinhoServices from '../../services/quadrinhosServices'
 
 
-const QuadrinhoForm = () => {
+const QuadrinhoForm = (props) => {
 
-    const { register, handleSubmit, formState: { errors } } = useForm()
+    const { register, handleSubmit, setValue, formState: { errors } } = useForm()
 
 
     function enviarDados(dados) {
+        QuadrinhoServices.create(dados)
+        props.history.push('/Quadrinhos')
         console.log(dados);
+    }
+
+    function mascara(event){ 
+        const masc = event.target.getAttribute('mask')
+        const name = event.target.name
+        let valor = unMask(event.target.value) 
+        valor = mask(valor,masc)
+
+        setValue(name, valor)
     }
 
     return (
@@ -32,7 +45,7 @@ const QuadrinhoForm = () => {
                         </Form.Group>
                         <Form.Group as={Row} controlId="publicação">
                             <Form.Label>Data de Publicação:</Form.Label>
-                            <Form.Control type="date" {...register("publicação",validador.publicação)} />
+                            <Form.Control type="text" {...register("publicação",validador.publicação)}  mask="99/99/9999" onChange={mascara}/>
                         </Form.Group>
                         <Form.Group as={Row} controlId="autor">
                             <Form.Label>Autor:</Form.Label>
@@ -41,7 +54,7 @@ const QuadrinhoForm = () => {
                         </Form.Group>
                         <Form.Group as={Row} controlId="versão">
                             <Form.Label>Versão:</Form.Label>
-                            <Form.Control type="number" {...register("versão",validador.versão)} />
+                            <Form.Control type="text" {...register("versão",validador.versão)} />
                         </Form.Group>
                         <Form.Group as={Row} controlId="genero">
                             <Form.Label>Genero:</Form.Label>

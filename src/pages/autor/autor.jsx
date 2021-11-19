@@ -1,5 +1,5 @@
 import React, { useState , useEffect } from 'react'
-import { Card, Table } from 'react-bootstrap'
+import { Card, Container, Table } from 'react-bootstrap'
 import { Link } from 'react-router-dom/cjs/react-router-dom.min'
 import Box from '../../components/card'
 import AutorServices from '../../services/autorServices'
@@ -38,7 +38,9 @@ const Autor = () => {
                     </tbody>
                 </Table>
             </Card>
+            <Container className='mt-3'>
             <Link to="/CadastroAutor" className ="btn btn-outline-info">Inserir Autor</Link>
+            </Container>
             </Box>
         </>
     )
