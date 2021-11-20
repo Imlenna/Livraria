@@ -1,6 +1,6 @@
 import React, { useState , useEffect } from 'react'
 import { Button, Card, Table } from 'react-bootstrap'
-import { AiFillDelete, AiFillEdit } from 'react-icons/ai'
+import { AiFillDelete, AiFillEdit, AiOutlineSend } from 'react-icons/ai'
 import { Link } from 'react-router-dom/cjs/react-router-dom.min'
 import Box from '../../components/card'
 import FuncionarioServices from '../../services/funcionarioServices'
@@ -43,14 +43,14 @@ const Funcionario = () => {
                                         <Link to={'/Cadastrofuncionario/'+i } className="btn btn-outline-info" title="Alterar">
                                         <AiFillEdit />Editar
                                         </Link>  {' '}
-                                        <Button variant="outline-danger" title="Deletar" onClick={(() => excluir(i))} ><AiFillDelete />Deletar</Button>
+                                        <Button variant="outline-danger" title="Deletar" onClick={(() => excluir(i))} ><AiFillDelete />Deletar</Button>{' '}
+                                        <Link to="/Cadastrofuncionario" className ="btn btn-outline-primary"><AiOutlineSend />Inserir funcionario</Link>
                             </td>
                         </tr>
                          ))}
                     </tbody>
                 </Table>
             </Card>
-            <Link to="/Cadastrofuncionario" className ="btn btn-outline-info">Inserir funcionario</Link>
             </Box>
         </>
     )

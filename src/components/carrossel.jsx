@@ -14,9 +14,12 @@ function ControlledCarousel() {
   return (
     <Carousel activeIndex={index} onSelect={handleSelect}>
       <Carousel.Item>
-        <img src={estante} alt="img1" />
+        <img src={estante} alt="img1"/>
         <Carousel.Caption>
-          <h3>Livros</h3>
+        <Link to="/Livros"
+            style={{ textDecoration: 'none' }}>
+            <h3>Livros</h3>
+          </Link>
           <p>Compre seus diversos Livros aqui</p>
         </Carousel.Caption>
       </Carousel.Item>

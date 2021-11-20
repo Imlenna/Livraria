@@ -1,6 +1,6 @@
 import React, { useState , useEffect } from 'react'
 import { Button, Card, Table } from 'react-bootstrap'
-import { AiFillDelete, AiFillEdit } from 'react-icons/ai'
+import { AiFillDelete, AiFillEdit, AiOutlineSend } from 'react-icons/ai'
 import { Link } from 'react-router-dom/cjs/react-router-dom.min'
 import Box from '../../components/card'
 import LivrosServices from '../../services/livrosServices'
@@ -43,14 +43,14 @@ const Livros = () => {
                                         <Link to={'/Cadastrolivros/'+i } className="btn btn-outline-info" title="Alterar">
                                         <AiFillEdit />Editar
                                         </Link>  {' '}
-                                        <Button variant="outline-danger" title="Deletar" onClick={(() => excluir(i))} ><AiFillDelete />Deletar</Button>
+                                        <Button variant="outline-danger" title="Deletar" onClick={(() => excluir(i))} ><AiFillDelete />Deletar</Button>{' '}
+                                        <Link to="/Cadastrolivros" className ="btn btn-outline-primary"><AiOutlineSend />Inserir livros</Link>
                                     </td>
                         </tr>
                          ))}
                     </tbody>
                 </Table>
             </Card>
-            <Link to="/Cadastrolivros" className ="btn btn-outline-info">Inserir livros</Link>
             </Box>
         </>
     )

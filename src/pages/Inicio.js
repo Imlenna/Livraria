@@ -4,8 +4,7 @@ import ControlledCarousel from '../components/carrossel'
 
 const Inicio = () => {
     return (
-        <>
-           <h1>Bem vindo</h1> 
+        <> 
            <ControlledCarousel/>
         </>
     )
