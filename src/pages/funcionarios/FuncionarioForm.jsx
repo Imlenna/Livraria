@@ -6,24 +6,44 @@ import validador from '../../validadores/validadorFuncionario';
 import { Link } from 'react-router-dom';
 import FuncionarioServices from '../../services/funcionarioServices'
 import { mask, unMask } from 'remask';
+import { useEffect } from 'react';
 
 
 const FuncionarioForm = (props) => {
 
-    const { register, handleSubmit, setValue , formState: { errors } } = useForm()
+    const { register, handleSubmit, setValue, formState: { errors } } = useForm()
+
+    useEffect(() => {
+        const id = props.match.params.id
+
+        if (id) {
+            const funcionario = FuncionarioServices.get(id)
+            for (let campo in funcionario) {
+                setValue(campo, funcionario[campo])
+            }
+        }
+
+    }, [props, setValue])
 
     function enviarDados(dados) {
-        FuncionarioServices.create(dados)
+        const id = props.match.params.id
+        if (id) {
+            FuncionarioServices.update(dados, id)
+        }
+        else {
+            FuncionarioServices.create(dados)
+        }
+
         props.history.push('/funcionarios')
-        console.log(dados);
+
     }
 
-    function mascara(event){ 
+    function mascara(event) {
         const masc = event.target.getAttribute('mask')
         const name = event.target.name
-        let valor = unMask(event.target.value) 
-        valor = mask(valor,masc)
-        
+        let valor = unMask(event.target.value)
+        valor = mask(valor, masc)
+
         setValue(name, valor)
     }
 
@@ -48,7 +68,7 @@ const FuncionarioForm = (props) => {
                         </Form.Group>
                         <Form.Group as={Row} controlId="cpf">
                             <Form.Label>CPF</Form.Label>
-                            <Form.Control type="text" {...register("cpf", validador.cpf)} mask ="999.999.999-99" onChange={mascara}/>
+                            <Form.Control type="text" {...register("cpf", validador.cpf)} mask="999.999.999-99" onChange={mascara} />
                             {errors.cpf && <span className="text-danger">{errors.cpf.message}</span>}
                         </Form.Group>
                         <Form.Group as={Row} controlId="matricula">
@@ -58,17 +78,17 @@ const FuncionarioForm = (props) => {
                         </Form.Group>
                         <Form.Group as={Row} controlId="nascimento">
                             <Form.Label>Data de nascimento</Form.Label>
-                            <Form.Control type="text" {...register("nascimento", validador.nascimento)} mask="99/99/9999" onChange={mascara}/>
+                            <Form.Control type="text" {...register("nascimento", validador.nascimento)} mask="99/99/9999" onChange={mascara} />
                             {errors.nascimento && <span className="text-danger">{errors.nascimento.message}</span>}
                         </Form.Group>
                         <Form.Group as={Row} controlId="telefone">
                             <Form.Label>Telefone</Form.Label>
-                            <Form.Control type="text" {...register("telefone", validador.telefone)} mask="(99)99999-9999" onChange={mascara}/>
+                            <Form.Control type="text" {...register("telefone", validador.telefone)} mask="(99)99999-9999" onChange={mascara} />
                         </Form.Group>
                     </Row>
                     <div className="text-center">
                         <Button variant="success" onClick={handleSubmit(enviarDados)}><AiOutlineSend /> Salvar</Button>
-                        <Link to="/" className="btn btn-danger"><AiOutlineRollback/>Voltar</Link>
+                        <Link to="/" className="btn btn-danger"><AiOutlineRollback />Voltar</Link>
                     </div>
                 </Form>
             </Card>

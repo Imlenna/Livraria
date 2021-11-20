@@ -3,45 +3,44 @@ import { Button, Card, Container, Table } from 'react-bootstrap'
 import { AiFillDelete, AiFillEdit, AiOutlineSend } from 'react-icons/ai'
 import { Link } from 'react-router-dom/cjs/react-router-dom.min'
 import Box from '../../components/card'
-import AutorServices from '../../services/autorServices'
+import EditoraServices from '../../services/editoraServices'
 
 
-const Autor = (props) => {
+const Editora = (props) => {
 
-    const [autores, setAutores] = useState([])
+    const [editora, setEditora] = useState([])
 
     useEffect(() => {
-        const autores = AutorServices.getAll()
-        setAutores(autores)
+        const editora = EditoraServices.getAll()
+        setEditora(editora)
     }, [])
 
     function excluir(i) {
-        AutorServices.delete(i)
-        setAutores(AutorServices.getAll())
+        EditoraServices.delete(i)
+        setEditora(EditoraServices.getAll())
     }
 
-    
+
+
     return (
         <>
-            <Box title="Autores">
+            <Box title="Editora">
                 <Card>
                     <Table size="sm" variant="light">
                         <thead>
                             <tr>
-                                <th>Nome</th>
-                                <th>Livros</th>
-                                <th>Reside</th>
+                                <th>Editora</th>
+                                <th>País de Origem</th>
                             </tr>
                         </thead>
                         <tbody>
-                            {autores.map((autor, i) => (
+                            {editora.map((editora, i) => (
                                 <tr key={i}>
-                                    <td>{autor.nome}</td>
-                                    <td></td>
-                                    <td>{autor.residencia}</td>
+                                    <td>{editora.editora}</td>
+                                    <td>{editora.pais}</td>
                                     <td>
-                                        <Link to={'/CadastroAutor/'+i } className="btn btn-outline-info" title="Alterar">
-                                        <AiFillEdit />Editar
+                                        <Link to={'/CadastroEditoras/' + i} className="btn btn-outline-info" title="Alterar">
+                                            <AiFillEdit />Editar
                                         </Link>  {' '}
                                         <Button variant="outline-danger" title="Deletar" onClick={(() => excluir(i))} ><AiFillDelete />Deletar</Button>
                                     </td>
@@ -51,7 +50,7 @@ const Autor = (props) => {
                         </tbody>
                     </Table>
                     <Container className="mb-3 text-center">
-                        <Link to="/CadastroAutor" className="btn btn-outline-info"><AiOutlineSend />Inserir</Link>
+                        <Link to="/CadastroEditoras" className="btn btn-outline-info"><AiOutlineSend />Inserir</Link>
                     </Container>
                 </Card>
             </Box>
@@ -59,4 +58,4 @@ const Autor = (props) => {
     )
 }
 
-export default Autor
+export default Editora

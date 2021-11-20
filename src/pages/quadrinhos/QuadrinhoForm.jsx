@@ -6,6 +6,7 @@ import validador from '../../validadores/validadorQuadrinho';
 import { Link } from 'react-router-dom/cjs/react-router-dom.min';
 import { mask, unMask } from 'remask';
 import QuadrinhoServices from '../../services/quadrinhosServices'
+import { useEffect } from 'react';
 
 
 const QuadrinhoForm = (props) => {
@@ -13,10 +14,30 @@ const QuadrinhoForm = (props) => {
     const { register, handleSubmit, setValue, formState: { errors } } = useForm()
 
 
+    useEffect(() => {
+        const id = props.match.params.id
+
+        if(id){
+            const quadrinho = QuadrinhoServices.get(id)
+        
+            for(let campo in quadrinho){
+                setValue(campo ,quadrinho[campo])
+            }
+        }
+
+    }, [props , setValue])
+
     function enviarDados(dados) {
-        QuadrinhoServices.create(dados)
-        props.history.push('/Quadrinhos')
-        console.log(dados);
+        const id = props.match.params.id
+        if(id){
+            QuadrinhoServices.update(dados,id)
+        }
+        else{
+            QuadrinhoServices.create(dados)
+        }
+       
+        props.history.push('/quadrinhos')
+       
     }
 
     function mascara(event){ 

@@ -5,7 +5,8 @@ class funcionarioServices{
     }
 
     get(id){
-
+        const funcionarios = this.getAll()
+        return funcionarios[id]
     }
 
     create(dados){
@@ -15,13 +16,17 @@ class funcionarioServices{
         localStorage.setItem('funcionarios', JSON.stringify(funcionarios))
     }
 
-    update(dados){
-
+    update(dados,id){
+        const funcionarios = this.getAll()
+        funcionarios.splice(id,1, dados)
+        localStorage.setItem('funcionarios', JSON.stringify(funcionarios))
     }
 
 
     delete(id){
-
+        const funcionarios = this.getAll()
+        funcionarios.splice(id,1)
+        localStorage.setItem('funcionarios', JSON.stringify(funcionarios))
     }
 }
 

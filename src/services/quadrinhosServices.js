@@ -5,7 +5,8 @@ class quadrinhoServices{
     }
 
     get(id){
-
+        const quadrinhos = this.getAll()
+        return quadrinhos[id]
     }
 
     create(dados){
@@ -16,13 +17,17 @@ class quadrinhoServices{
         localStorage.setItem('quadrinhos', JSON.stringify(quadrinhos))
     }
 
-    update(dados){
-
+    update(dados,id){
+        const quadrinhos = this.getAll()
+        quadrinhos.splice(id,1, dados)
+        localStorage.setItem('quadrinhos', JSON.stringify(quadrinhos))
     }
 
 
     delete(id){
-
+        const quadrinhos = this.getAll()
+        quadrinhos.splice(id,1)
+        localStorage.setItem('quadrinhos', JSON.stringify(quadrinhos))
     }
 }
 

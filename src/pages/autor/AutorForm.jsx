@@ -1,7 +1,8 @@
+import React, { useEffect } from 'react';
 import { useForm } from 'react-hook-form'
 import { Button, Form, Row } from 'react-bootstrap'
 import Card from '../../components/card'
-import {  AiOutlineRollback, AiOutlineSend } from 'react-icons/ai';
+import { AiOutlineRollback, AiOutlineSend } from 'react-icons/ai';
 import validador from '../../validadores/validadorAutor';
 import { Link } from 'react-router-dom/cjs/react-router-dom.min';
 import AutorServices from '../../services/autorServices'
@@ -10,12 +11,31 @@ import AutorServices from '../../services/autorServices'
 
 const AutorForm = (props) => {
 
-    const { register, handleSubmit, formState: { errors } } = useForm()
-    
+    const { register, handleSubmit, setValue, formState: { errors } } = useForm()
+
+    useEffect(() => {
+        const id = props.match.params.id
+        if (id) {
+            const autor = AutorServices.get(id)
+
+            for (let campo in autor) {
+                setValue(campo, autor[campo])
+            }
+        }
+
+    }, [props, setValue])
+
     function enviarDados(dados) {
-        AutorServices.create(dados)
+        const id = props.match.params.id
+        if (id) {
+            AutorServices.update(dados, id)
+        }
+        else {
+            AutorServices.create(dados)
+        }
+
         props.history.push('/autores')
-        console.log(dados);
+
     }
 
     return (
@@ -42,7 +62,7 @@ const AutorForm = (props) => {
 
                     <div className="text-center ">
                         <Button variant="success" onClick={handleSubmit(enviarDados)}><AiOutlineSend /> Salvar</Button>
-                        <Link to="/" className="btn btn-danger"><AiOutlineRollback/>Voltar</Link>
+                        <Link to="/" className="btn btn-danger"><AiOutlineRollback />Voltar</Link>
                     </div>
 
                 </Form>

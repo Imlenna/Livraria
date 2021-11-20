@@ -5,7 +5,8 @@ class clienteServices{
     }
 
     get(id){
-
+        const clientes = this.getAll()
+        return clientes[id]
     }
 
     create(dados){
@@ -16,13 +17,17 @@ class clienteServices{
         localStorage.setItem('clientes', JSON.stringify(clientes))
     }
 
-    update(dados){
-
+    update(dados, id){
+        const clientes = this.getAll()
+        clientes.splice(id,1, dados)
+        localStorage.setItem('clientes', JSON.stringify(clientes))
     }
 
 
     delete(id){
-
+        const clientes = this.getAll()
+        clientes.splice(id,1)
+        localStorage.setItem('clientes', JSON.stringify(clientes))
     }
 }
 

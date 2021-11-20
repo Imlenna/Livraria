@@ -6,6 +6,7 @@ import validador from '../../validadores/validadorCliente';
 import { mask, unMask } from 'remask';
 import ClienteServices from '../../services/clienteServices';
 import { Link } from 'react-router-dom/cjs/react-router-dom.min';
+import { useEffect } from 'react';
 
 
 const ClienteForm = (props) => {
@@ -13,10 +14,30 @@ const ClienteForm = (props) => {
     const { register, handleSubmit, setValue, formState: { errors } } = useForm()
 
 
+    useEffect(() => {
+        const id = props.match.params.id
+
+        if(id){
+            const cliente = ClienteServices.get(id)
+        
+            for(let campo in cliente){
+                setValue(campo ,cliente[campo])
+            }
+        }
+
+    }, [props , setValue])
+
     function enviarDados(dados) {
-        ClienteServices.create(dados)
+        const id = props.match.params.id
+        if(id){
+            ClienteServices.update(dados,id)
+        }
+        else{
+            ClienteServices.create(dados)
+        }
+       
         props.history.push('/clientes')
-        console.log(dados);
+       
     }
 
     function mascara(event){ 
