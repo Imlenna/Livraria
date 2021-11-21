@@ -6,13 +6,19 @@ import validador from '../../validadores/validadorLivro';
 import { Link } from 'react-router-dom/cjs/react-router-dom.min';
 import { mask, unMask } from 'remask';
 import LivrosServices from '../../services/livrosServices'
-import { useEffect } from 'react';
+import { useEffect , useState  } from 'react';
+import editoraServices from '../../services/editoraServices';
+import autorServices from '../../services/autorServices';
+
 
 
 const LivrosForm = (props) => {
 
     const { register, handleSubmit, setValue, formState: { errors } } = useForm()
 
+    const [editora, setEditora] = useState([])
+    const [autor, setAutor] = useState([])
+   
 
     useEffect(() => {
         const id = props.match.params.id
@@ -24,6 +30,13 @@ const LivrosForm = (props) => {
                 setValue(campo, livro[campo])
             }
         }
+
+        const editoras = editoraServices.getAll()
+        setEditora(editoras)
+        
+        const autores = autorServices.getAll()
+        setAutor(autores)
+
 
     }, [props, setValue])
 
@@ -59,17 +72,27 @@ const LivrosForm = (props) => {
                             <Form.Control type="text" autoComplete="off" {...register("titulo", validador.titulo)} />
                             {errors.titulo && <span className="text-danger">{errors.titulo.message}</span>}
                         </Form.Group>
-                        <Form.Group  controlId="autor">
+                        <Form.Group controlId="autor">
                             <Form.Label>Autor</Form.Label>
-                            <Form.Control type="text" {...register("autor", validador.autor)} />
+                            <Form.Select {...register("autor", validador.autor)} >
+                            <option value="">Selecione</option>
+                             {autor.map(autor=>(
+                                 <option key={autor.id} value={autor.id}>{autor.nome}</option>
+                             ))}   
                             {errors.autor && <span className="text-danger">{errors.autor.message}</span>}
+                            </Form.Select>
                         </Form.Group>
-                        <Form.Group  controlId="editora">
+                        <Form.Group controlId="editora">
                             <Form.Label>Editora</Form.Label>
-                            <Form.Control type="text" {...register("editora", validador.editora)} />
+                            <Form.Select {...register("editora", validador.editora)} >
+                            <option value="">Selecione a Editora</option>
+                             {editora.map(editora=>(
+                                 <option key={editora.id} value={editora.id}>{editora.editora}</option>
+                             ))}   
+                            </Form.Select>
                             {errors.editora && <span className="text-danger">{errors.editora.message}</span>}
                         </Form.Group>
-                        <Form.Group  controlId="publicacao">
+                        <Form.Group controlId="publicacao">
                             <Form.Label>Data de publicação</Form.Label>
                             <Form.Control type="tex" {...register("publicacao", validador.publicacao)} mask="99/99/9999" onChange={mascara} />
                         </Form.Group>
@@ -81,12 +104,12 @@ const LivrosForm = (props) => {
                             <Form.Label>Número de exemplares</Form.Label>
                             <Form.Control type="text" {...register("exemplares", validador.exemplares)} />
                         </Form.Group>
-                        <Form.Group  controlId="genero">
+                        <Form.Group controlId="genero">
                             <Form.Label>Genêro Literario</Form.Label>
                             <Form.Control type="text" {...register("genero", validador.genero)} />
                             {errors.genero && <span className="text-danger">{errors.genero.message}</span>}
                         </Form.Group>
-                        <Form.Group  controlId="pais">
+                        <Form.Group controlId="pais">
                             <Form.Label>País de publicação:</Form.Label>
                             <Form.Control type="text" {...register("pais", validador.pais)} />
                         </Form.Group>

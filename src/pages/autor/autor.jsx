@@ -16,6 +16,7 @@ const Autor = (props) => {
     }, [])
 
     function excluir(i) {
+        
         AutorServices.delete(i)
         setAutores(AutorServices.getAll())
     }

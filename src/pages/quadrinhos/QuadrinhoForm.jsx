@@ -6,13 +6,17 @@ import validador from '../../validadores/validadorQuadrinho';
 import { Link } from 'react-router-dom/cjs/react-router-dom.min';
 import { mask, unMask } from 'remask';
 import QuadrinhoServices from '../../services/quadrinhosServices'
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
+import editoraServices from '../../services/editoraServices';
+import autorServices from '../../services/autorServices';
 
 
 const QuadrinhoForm = (props) => {
 
     const { register, handleSubmit, setValue, formState: { errors } } = useForm()
 
+    const [editora, setEditora] = useState([])
+    const [autor, setAutor] = useState([])
 
     useEffect(() => {
         const id = props.match.params.id
@@ -24,6 +28,13 @@ const QuadrinhoForm = (props) => {
                 setValue(campo ,quadrinho[campo])
             }
         }
+
+        const editoras = editoraServices.getAll()
+        setEditora(editoras)
+        
+        const autores = autorServices.getAll()
+        setAutor(autores)
+
 
     }, [props , setValue])
 
@@ -59,9 +70,24 @@ const QuadrinhoForm = (props) => {
                             <Form.Control type="text" {...register("titulo", validador.titulo)} />
                             {errors.titulo && <span className="text-danger">{errors.titulo.message}</span>}
                         </Form.Group>
+                        <Form.Group controlId="autor">
+                            <Form.Label>Autor</Form.Label>
+                            <Form.Select {...register("autor", validador.autor)} >
+                            <option value="">Selecione</option>
+                             {autor.map(autor=>(
+                                 <option key={autor.id} value={autor.id}>{autor.nome}</option>
+                             ))}   
+                            {errors.autor && <span className="text-danger">{errors.autor.message}</span>}
+                            </Form.Select>
+                        </Form.Group>
                         <Form.Group controlId="editora">
                             <Form.Label>Editora</Form.Label>
-                            <Form.Control type="text" {...register("editora", validador.editora)} />
+                            <Form.Select {...register("editora", validador.editora)} >
+                            <option value="">Selecione a Editora</option>
+                             {editora.map(editora=>(
+                                 <option key={editora.id} value={editora.id}>{editora.editora}</option>
+                             ))}   
+                            </Form.Select>
                             {errors.editora && <span className="text-danger">{errors.editora.message}</span>}
                         </Form.Group>
                         <Form.Group controlId="publicação">
@@ -71,11 +97,6 @@ const QuadrinhoForm = (props) => {
                         <Form.Group  controlId="versão">
                             <Form.Label>Versão:</Form.Label>
                             <Form.Control type="text" {...register("versão",validador.versão)} />
-                        </Form.Group>
-                        <Form.Group  controlId="autor">
-                            <Form.Label>Autor:</Form.Label>
-                            <Form.Control type="text" {...register("autor",validador.autor)} />
-                            {errors.autor && <span className="text-danger">{errors.autor.message}</span>}
                         </Form.Group>
                         <Form.Group  controlId="genero">
                             <Form.Label>Genero:</Form.Label>
