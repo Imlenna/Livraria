@@ -43,24 +43,24 @@ const AutorForm = (props) => {
             <Card title="Autor">
                 <Form>
                     <Row className="mb-3">
-                        <Form.Group as={Row} controlId="Nome">
+                        <Form.Group  controlId="Nome">
                             <Form.Label>Nome</Form.Label>
                             <Form.Control type="text" autoComplete="off" {...register("nome", validador.nome)} />
                             {errors.nome && <span className="text-danger">{errors.nome.message}</span>}
                         </Form.Group>
-                        <Form.Group as={Row} controlId="residencia">
+                        <Form.Group  controlId="residencia">
                             <Form.Label>Residencia</Form.Label>
                             <Form.Control type="text" {...register("residencia", validador.residencia)} />
                             {errors.residencia && <span className="text-danger">{errors.residencia.message}</span>}
                         </Form.Group>
-                        <Form.Group as={Row} controlId="nascimento">
+                        <Form.Group  controlId="nascimento">
                             <Form.Label>Data de Nascimento</Form.Label>
                             <Form.Control type="date" {...register("nascimento", validador.nascimento)} />
                             {errors.nascimento && <span className="text-danger">{errors.nascimento.message}</span>}
                         </Form.Group>
                     </Row>
 
-                    <div className="text-center ">
+                    <div className="justify-content-center d-flex gap-2">
                         <Button variant="success" onClick={handleSubmit(enviarDados)}><AiOutlineSend /> Salvar</Button>
                         <Link to="/" className="btn btn-danger"><AiOutlineRollback />Voltar</Link>
                     </div>

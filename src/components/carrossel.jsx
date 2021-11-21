@@ -1,8 +1,9 @@
 import { useState } from "react";
 import { Carousel } from "react-bootstrap";
 import { Link } from "react-router-dom";
-import estante from "../img/estante.jpg"
+import estante from "../img/bookshelf.jpg"
 import quadrinho from "../img/quadrinho.jpg"
+import "./style.css"
 
 function ControlledCarousel() {
   const [index, setIndex] = useState(0);
@@ -16,8 +17,7 @@ function ControlledCarousel() {
       <Carousel.Item>
         <img src={estante} alt="img1"/>
         <Carousel.Caption>
-        <Link to="/Livros"
-            style={{ textDecoration: 'none' }}>
+        <Link to="/Livros" style={{ textDecoration: 'none' }}>
             <h3>Livros</h3>
           </Link>
           <p>Compre seus diversos Livros aqui</p>

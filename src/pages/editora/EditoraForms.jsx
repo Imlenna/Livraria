@@ -53,7 +53,7 @@ const EditoraForm = (props) => {
                             <Form.Control type="text" {...register("pais", validador.pais)} />
                         </Form.Group>
                     </Row>
-                    <div className="mt-3 text-center">
+                    <div className="mt-3 justify-content-center d-flex gap-2">
                         <Button variant="success" onClick={handleSubmit(enviarDados)}><AiOutlineSend /> Salvar</Button>{'    '}
                         <Link to="/" className="btn btn-danger"><AiOutlineRollback />Voltar</Link>
                     </div>

@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react'
-import { Button, Card, Table } from 'react-bootstrap'
+import { Button, Card, Container, Table } from 'react-bootstrap'
 import { AiFillDelete, AiFillEdit, AiOutlineSend } from 'react-icons/ai'
 import { Link } from 'react-router-dom/cjs/react-router-dom.min'
 import Box from '../../components/card'
@@ -40,16 +40,18 @@ const Cliente = () => {
                                     <td>{cliente.cpf}</td>
                                     <td>{cliente.email}</td>
                                     <td>
-                                        <Link to={'/Cadastrocliente/' + i} className="btn btn-outline-info" title="Alterar">
-                                        <AiFillEdit />Editar
+                                        <Link to={'/Cadastrocliente/' + i} className="botoes btn-sm  btn btn-outline-info" title="Alterar">
+                                            <AiFillEdit />Editar
                                         </Link>  {' '}
-                                        <Button variant="outline-danger" title="Deletar" onClick={(() => excluir(i))} ><AiFillDelete />Deletar</Button>{' '}
-                                        <Link to="/Cadastrocliente" className="btn btn-outline-primary"><AiOutlineSend />Inserir cliente</Link>
+                                        <Button variant="outline-danger" className="botoes btn-sm" title="Deletar" onClick={(() => excluir(i))} ><AiFillDelete />Deletar</Button>{' '}
                                     </td>
                                 </tr>
                             ))}
                         </tbody>
                     </Table>
+                    <Container className="mb-3">
+                        <Link to="/Cadastrocliente" className="botoes btn-sm  btn btn-outline-primary float-end"><AiOutlineSend />Inserir</Link>
+                    </Container>
                 </Card>
             </Box>
         </>

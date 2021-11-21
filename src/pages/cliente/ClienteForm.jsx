@@ -60,32 +60,32 @@ const ClienteForm = (props) => {
                             <Form.Control type="text" autoComplete="off" {...register("nome", validador.nome)} />
                             {errors.nome && <span className="text-danger">{errors.nome.message}</span>}
                         </Form.Group>
-                        <Form.Group as={Row} controlId="residencia">
+                        <Form.Group  controlId="residencia">
                             <Form.Label>Residência:</Form.Label>
                             <Form.Control type="text" {...register("residencia", validador.residencia)} />
                             {errors.residencia && <span className="text-danger">{errors.residencia.message}</span>}
                         </Form.Group>
-                        <Form.Group as={Row} controlId="nascimento">
+                        <Form.Group  controlId="nascimento">
                             <Form.Label>Data de Nascimento:</Form.Label>
                             <Form.Control type="date" {...register("nascimento",validador.nascimento)} />
                             {errors.nascimento && <span className="text-danger">{errors.nascimento.message}</span>}
                         </Form.Group>
-                        <Form.Group as={Row} controlId="cpf">
+                        <Form.Group  controlId="cpf">
                             <Form.Label>CPF:</Form.Label>
                             <Form.Control type="text" {...register("cpf",validador.cpf)} mask ="999.999.999-99" onChange={mascara}/>
                             {errors.cpf && <span className="text-danger">{errors.cpf.message}</span>}
                         </Form.Group>
-                        <Form.Group as={Row} controlId="email">
+                        <Form.Group  controlId="email">
                             <Form.Label>Email:</Form.Label>
                             <Form.Control type="email" {...register("email",validador.email)}/>
                             {errors.email && <span className="text-danger">{errors.email.message}</span>}
                         </Form.Group>
-                        <Form.Group as={Row} controlId="telefone">
+                        <Form.Group  controlId="telefone">
                             <Form.Label>Telefone</Form.Label>
                             <Form.Control type="text" {...register("telefone", validador.telefone)}  mask="(99)99999-9999" onChange={mascara}/>
                         </Form.Group>
                     </Row>
-                    <div className="text-center">
+                    <div className="justify-content-center d-flex gap-2">
                         <Button variant="success" onClick={handleSubmit(enviarDados)}><AiOutlineSend /> Salvar</Button>
                         <Link to="/" className="btn btn-danger"><AiOutlineRollback/>Voltar</Link>
                     </div>

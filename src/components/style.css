@@ -1,0 +1,23 @@
+h3{
+    color:whitesmoke;
+    font-size: 50px;
+    font-family:'M PLUS 1', sans-serif;
+}
+
+img{
+    width: 1920px;
+    height: 881px;
+}
+
+p{
+    font-size: 30px;
+    font-family: 'Montserrat', sans-serif;
+}
+
+.links{
+    font-family: 'Montserrat', sans-serif; 
+}
+
+.botoes{
+    font-family: 'Roboto', sans-serif;
+}

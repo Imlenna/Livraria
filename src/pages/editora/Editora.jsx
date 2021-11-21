@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react'
-import { Button, Card, Table } from 'react-bootstrap'
+import { Button, Card, Container, Table } from 'react-bootstrap'
 import { AiFillDelete, AiFillEdit, AiOutlineSend } from 'react-icons/ai'
 import { Link } from 'react-router-dom/cjs/react-router-dom.min'
 import Box from '../../components/card'
@@ -43,13 +43,14 @@ const Editora = (props) => {
                                             <AiFillEdit />Editar
                                         </Link>  {' '}
                                         <Button variant="outline-danger" title="Deletar" onClick={(() => excluir(i))} ><AiFillDelete />Deletar</Button>{' '}
-                                        <Link to="/CadastroEditoras" className="btn btn-outline-primary"><AiOutlineSend />Inserir</Link>
                                     </td>
                                 </tr>
                             ))}
-
                         </tbody>
                     </Table>
+                    <Container className="mb-3">
+                        <Link to="/CadastroEditoras" className="btn btn-outline-primary float-end"><AiOutlineSend />Inserir</Link>
+                    </Container>
                 </Card>
             </Box>
         </>

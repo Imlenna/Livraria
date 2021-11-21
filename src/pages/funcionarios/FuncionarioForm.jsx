@@ -46,49 +46,52 @@ const FuncionarioForm = (props) => {
 
         setValue(name, valor)
     }
+    console.log(props)
 
     return (
         <>
             <Card title="Funcionario">
                 <Form>
                     <Row className="mb-3">
-                        <Form.Group as={Col} controlId="nome">
+                        <Form.Group controlId="nome">
                             <Form.Label>Nome</Form.Label>
                             <Form.Control type="text" {...register("nome", validador.nome)} />
                             {errors.nome && <span className="text-danger">{errors.nome.message}</span>}
                         </Form.Group>
-                        <Form.Group as={Row} controlId="funcao">
+                        <Row>
+                        <Form.Group as={Col} controlId="funcao">
                             <Form.Label>Função</Form.Label>
                             <Form.Control type="text" {...register("funcao", validador.funcao)} />
                             {errors.funcao && <span className="text-danger">{errors.funcao.message}</span>}
                         </Form.Group>
-                        <Form.Group as={Row} controlId="contratação">
+                        <Form.Group as={Col} controlId="contratação">
                             <Form.Label>Data de contratação</Form.Label>
-                            <Form.Control type="date" {...register("contratação", validador.contratação)} mask="99/99/9999" onChange={mascara} />
+                            <Form.Control type="text" {...register("contratação", validador.contratação)} mask="99/99/9999" onChange={mascara} />
                         </Form.Group>
-                        <Form.Group as={Row} controlId="cpf">
+                        </Row>
+                        <Form.Group  controlId="cpf">
                             <Form.Label>CPF</Form.Label>
                             <Form.Control type="text" {...register("cpf", validador.cpf)} mask="999.999.999-99" onChange={mascara} />
                             {errors.cpf && <span className="text-danger">{errors.cpf.message}</span>}
                         </Form.Group>
-                        <Form.Group as={Row} controlId="matricula">
+                        <Form.Group  controlId="matricula">
                             <Form.Label>matricula</Form.Label>
                             <Form.Control type="text" {...register("matricula", validador.matricula)} mask="999-9999" onChange={mascara} />
                             {errors.matricula && <span className="text-danger">{errors.matricula.message}</span>}
                         </Form.Group>
-                        <Form.Group as={Row} controlId="nascimento">
+                        <Form.Group controlId="nascimento">
                             <Form.Label>Data de nascimento</Form.Label>
                             <Form.Control type="text" {...register("nascimento", validador.nascimento)} mask="99/99/9999" onChange={mascara} />
                             {errors.nascimento && <span className="text-danger">{errors.nascimento.message}</span>}
                         </Form.Group>
-                        <Form.Group as={Row} controlId="telefone">
+                        <Form.Group  controlId="telefone">
                             <Form.Label>Telefone</Form.Label>
                             <Form.Control type="text" {...register("telefone", validador.telefone)} mask="(99)99999-9999" onChange={mascara} />
                         </Form.Group>
                     </Row>
-                    <div className="text-center">
+                    <div className="justify-content-center d-flex gap-2">
                         <Button variant="success" onClick={handleSubmit(enviarDados)}><AiOutlineSend /> Salvar</Button>
-                        <Link to="/" className="btn btn-danger"><AiOutlineRollback />Voltar</Link>
+                        <Link to='/' className="btn btn-danger"><AiOutlineRollback />Voltar</Link>
                     </div>
                 </Form>
             </Card>

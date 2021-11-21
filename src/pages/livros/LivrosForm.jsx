@@ -54,22 +54,22 @@ const LivrosForm = (props) => {
             <Card title="Livros">
                 <Form>
                     <Row className="mb-3">
-                        <Form.Group as={Col} controlId="titulo">
+                        <Form.Group controlId="titulo">
                             <Form.Label>Título</Form.Label>
                             <Form.Control type="text" autoComplete="off" {...register("titulo", validador.titulo)} />
                             {errors.titulo && <span className="text-danger">{errors.titulo.message}</span>}
                         </Form.Group>
-                        <Form.Group as={Row} controlId="autor">
+                        <Form.Group  controlId="autor">
                             <Form.Label>Autor</Form.Label>
                             <Form.Control type="text" {...register("autor", validador.autor)} />
                             {errors.autor && <span className="text-danger">{errors.autor.message}</span>}
                         </Form.Group>
-                        <Form.Group as={Row} controlId="editora">
+                        <Form.Group  controlId="editora">
                             <Form.Label>Editora</Form.Label>
                             <Form.Control type="text" {...register("editora", validador.editora)} />
                             {errors.editora && <span className="text-danger">{errors.editora.message}</span>}
                         </Form.Group>
-                        <Form.Group as={Row} controlId="publicacao">
+                        <Form.Group  controlId="publicacao">
                             <Form.Label>Data de publicação</Form.Label>
                             <Form.Control type="tex" {...register("publicacao", validador.publicacao)} mask="99/99/9999" onChange={mascara} />
                         </Form.Group>
@@ -81,17 +81,17 @@ const LivrosForm = (props) => {
                             <Form.Label>Número de exemplares</Form.Label>
                             <Form.Control type="text" {...register("exemplares", validador.exemplares)} />
                         </Form.Group>
-                        <Form.Group as={Row} controlId="genero">
+                        <Form.Group  controlId="genero">
                             <Form.Label>Genêro Literario</Form.Label>
                             <Form.Control type="text" {...register("genero", validador.genero)} />
                             {errors.genero && <span className="text-danger">{errors.genero.message}</span>}
                         </Form.Group>
-                        <Form.Group as={Row} controlId="pais">
+                        <Form.Group  controlId="pais">
                             <Form.Label>País de publicação:</Form.Label>
                             <Form.Control type="text" {...register("pais", validador.pais)} />
                         </Form.Group>
                     </Row>
-                    <div className="text-center">
+                    <div className="justify-content-center d-flex gap-2">
                         <Button variant="success" onClick={handleSubmit(enviarDados)}><AiOutlineSend /> Salvar</Button>
                         <Link to="/" className="btn btn-danger"><AiOutlineRollback />Voltar</Link>
                     </div>

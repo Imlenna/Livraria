@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react'
-import { Button, Card, Table } from 'react-bootstrap'
+import { Button, Card, Container, Table } from 'react-bootstrap'
 import { AiFillDelete, AiFillEdit, AiOutlineSend } from 'react-icons/ai'
 import { Link } from 'react-router-dom/cjs/react-router-dom.min'
 import Box from '../../components/card'
@@ -20,7 +20,7 @@ const Autor = (props) => {
         setAutores(AutorServices.getAll())
     }
 
-    
+
     return (
         <>
             <Box title="Autores">
@@ -29,7 +29,6 @@ const Autor = (props) => {
                         <thead>
                             <tr>
                                 <th>Nome</th>
-                                <th>Livros</th>
                                 <th>Reside</th>
                             </tr>
                         </thead>
@@ -37,20 +36,20 @@ const Autor = (props) => {
                             {autores.map((autor, i) => (
                                 <tr key={i}>
                                     <td>{autor.nome}</td>
-                                    <td></td>
                                     <td>{autor.residencia}</td>
                                     <td>
-                                        <Link to={'/CadastroAutor/'+i } className="btn btn-outline-info" title="Alterar">
-                                        <AiFillEdit />Editar
+                                        <Link to={'/CadastroAutor/' + i} className="botoes btn-sm btn btn-outline-info" title="Alterar">
+                                            <AiFillEdit />Editar
                                         </Link>  {' '}
-                                        <Button variant="outline-danger" title="Deletar" onClick={(() => excluir(i))} ><AiFillDelete />Deletar</Button>{' '}
-                                        <Link to="/CadastroAutor" className="btn btn-outline-primary"><AiOutlineSend />Inserir</Link>
+                                        <Button variant="outline-danger" className="botoes btn-sm" title="Deletar" onClick={(() => excluir(i))} ><AiFillDelete />Deletar</Button>{' '}
                                     </td>
                                 </tr>
                             ))}
-
                         </tbody>
                     </Table>
+                    <Container className="mb-3">
+                        <Link to="/CadastroAutor" className="botoes btn-sm btn btn-outline-primary float-end"><AiOutlineSend />Inserir</Link>
+                    </Container>
                 </Card>
             </Box>
         </>
